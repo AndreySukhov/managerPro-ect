@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * Project.
  *
- * @ORM\Table(name="project")
+ * @ORM\Table(name="projects")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
  * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity("name")
