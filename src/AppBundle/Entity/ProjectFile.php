@@ -15,6 +15,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ProjectFile
 {
     /**
+     * Identifier.
+     *
      * @var int
      *
      * @ORM\Id
@@ -24,6 +26,8 @@ class ProjectFile
     private $id;
 
     /**
+     * Filename.
+     *
      * @var string
      *
      * @ORM\Column(type="string")
@@ -32,6 +36,8 @@ class ProjectFile
     private $name;
 
     /**
+     * Content (markdown).
+     *
      * @var string
      *
      * @ORM\Column(type="text", nullable=true)
@@ -39,6 +45,8 @@ class ProjectFile
     private $content;
 
     /**
+     * Parent project.
+     *
      * @var Project
      *
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="files")
@@ -48,6 +56,8 @@ class ProjectFile
     private $project;
 
     /**
+     * Created at...
+     *
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
@@ -55,6 +65,8 @@ class ProjectFile
     private $createdAt;
 
     /**
+     * Updated at...
+     *
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")

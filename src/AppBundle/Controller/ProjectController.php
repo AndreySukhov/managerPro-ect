@@ -5,21 +5,35 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations as REST;
 use AppBundle\Form\Type\ProjectType;
 use AppBundle\Entity\Project;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class ProjectController extends FOSRestController
 {
     /**
+     * Get projects.
+     *
      * @Route("/api/v1/projects", name="app_get_projects")
      * @Method("GET")
-     * @REST\QueryParam(map=true, name="filters", requirements=".+", description="List of ids")
-     * @REST\QueryParam(map=true, name="order_by", requirements=".+", description="List of ids")
-     * @REST\QueryParam(name="limit", requirements="\d+", default="12", description="Sort direction")
-     * @REST\QueryParam(name="offset", requirements="\d+", default="0", description="Sort direction")
+     * @REST\QueryParam(map=true, name="filters", requirements=".+", description="Filters. Example: filters[name]=foo")
+     * @REST\QueryParam(map=true, name="order_by", requirements=".+", description="Order by. Example: order_by[name]=acs&order_by[id]=desc")
+     * @REST\QueryParam(name="limit", requirements="\d+", default="12", description="Limit")
+     * @REST\QueryParam(name="offset", requirements="\d+", default="0", description="Offset")
+     * @ApiDoc(
+     *  resource=true,
+     *  section="Project",
+     *  output="array<AppBundle\Entity\Project>",
+     *  tags = {
+     *      "in-development"
+     *  }
+     * )
+     *
+     * @return JsonResponse
      */
     public function getProjectsAction(ParamFetcher $paramFetcher)
     {
@@ -34,8 +48,21 @@ class ProjectController extends FOSRestController
     }
 
     /**
+     * Get projects.
+     *
      * @Route("/api/v1/projects/{project}", name="app_get_project")
      * @Method("GET")
+     * @ApiDoc(
+     *  section = "Project",
+     *  output="AppBundle\Entity\Project",
+     *  tags = {
+     *      "in-development"
+     *  }
+     * )
+     *
+     * @param Project $project The project
+     *
+     * @return JsonResponse
      */
     public function getProjectAction(Project $project)
     {
@@ -43,13 +70,38 @@ class ProjectController extends FOSRestController
     }
 
     /**
+     * Create poject.
+     *
      * @Route("/api/v1/projects", name="app_post_project")
      * @Method("POST")
+     * @ApiDoc(
+     *  section = "Project",
+     *  input="AppBundle\Form\Type\ProjectType",
+     *  statusCodes = {
+     *      201 = "Returned when successful",
+     *      400 = "Returned when the process error"
+     *  },
+     *  responseMap = {
+     *      201 = {
+     *          "class" = Project::class,
+     *      },
+     *      400 = {
+     *          "class" = ProjectType::class,
+     *          "form_errors" = true,
+     *          "name" = ""
+     *     },
+     *  },
+     *  tags = {
+     *      "in-development"
+     *  }
+     * )
+     *
+     * @return JsonResponse
      */
     public function postProjectAction(Request $request)
     {
         $project = new Project();
-        $form = $this->get('form.factory')->createNamed('', ProjectType::class, $project);
+        $form = $this->createForm(ProjectType::class, $project);
 
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -64,12 +116,40 @@ class ProjectController extends FOSRestController
     }
 
     /**
+     * Change project.
+     *
      * @Route("/api/v1/projects/{project}", name="app_put_project")
      * @Method("PUT")
+     * @ApiDoc(
+     *  section = "Project",
+     *  input="AppBundle\Form\Type\ProjectType",
+     *  output="AppBundle\Entity\Project",
+     *  statusCodes = {
+     *      200 = "Returned when successful",
+     *      400 = "Returned when the process error"
+     *  },
+     *  responseMap = {
+     *      200 = {
+     *          "class" = Project::class,
+     *      },
+     *      400 = {
+     *          "class" = ProjectType::class,
+     *          "form_errors" = true,
+     *          "name" = ""
+     *      },
+     *  },
+     *  tags = {
+     *      "in-development"
+     *  }
+     * )
+     *
+     * @param Project $project The project
+     *
+     * @return JsonResponse
      */
     public function putProjectAction(Request $request, Project $project)
     {
-        $form = $this->get('form.factory')->createNamed('', ProjectType::class, $project, [
+        $form = $this->createForm(ProjectType::class, $project, [
             'method' => 'PUT',
         ]);
 
@@ -86,8 +166,23 @@ class ProjectController extends FOSRestController
     }
 
     /**
+     * Delete project.
+     *
      * @Route("/api/v1/projects/{project}", name="app_delete_project")
      * @Method("DELETE")
+     * @ApiDoc(
+     *  section = "Project",
+     *  statusCodes = {
+     *      204 = "Returned when successful"
+     *  },
+     *  tags = {
+     *      "in-development"
+     *  }
+     * )
+     *
+     * @param Project $project The project
+     *
+     * @return JsonResponse
      */
     public function deleteProjectAction(Request $request, Project $project)
     {

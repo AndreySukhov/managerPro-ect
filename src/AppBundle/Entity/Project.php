@@ -18,6 +18,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class Project
 {
     /**
+     * Identifier.
+     *
      * @var int
      *
      * @ORM\Id
@@ -27,6 +29,8 @@ class Project
     private $id;
 
     /**
+     * Unique project name.
+     *
      * @var string
      *
      * @ORM\Column(type="string", unique=true)
@@ -35,6 +39,9 @@ class Project
     private $name;
 
     /**
+     * Source. 
+     * Path to git directory ot remote repo.
+     * 
      * @var string
      *
      * @ORM\Column(type="string", nullable=true)
@@ -42,6 +49,8 @@ class Project
     private $source;
 
     /**
+     * Branch in project.
+     *
      * @var string
      *
      * @ORM\Column(type="string")
@@ -50,6 +59,8 @@ class Project
     private $branch;
 
     /**
+     * Tracked files.
+     *
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="ProjectFile", mappedBy="project", cascade={"persist", "remove"})
@@ -57,6 +68,8 @@ class Project
     private $files;
 
     /**
+     * Created at...
+     *
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
@@ -64,6 +77,8 @@ class Project
     private $createdAt;
 
     /**
+     * Updated at...
+     *
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")

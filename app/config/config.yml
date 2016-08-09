@@ -69,6 +69,9 @@ fos_rest:
     disable_csrf_role: ROLE_API
     body_listener: true
     param_fetcher_listener: true
+    routing_loader:
+        default_format: json
+        include_format: false
     body_converter:
         enabled: true
     view:
@@ -81,10 +84,10 @@ fos_rest:
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
     format_listener:
         rules:
-            - { path: '^/api',  priorities: [ 'json'], fallback_format: json, prefer_extension: true }
+            - { path: '^/api', priorities: ['json'] }
             - { path: '^/', stop: true }
     serializer:
-      serialize_null: true
+        serialize_null: true
 
 jms_serializer:
     metadata:
@@ -95,3 +98,11 @@ jms_serializer:
             AppBundle:
                 namespace_prefix: "AppBundle"
                 path: "%kernel.root_dir%/config/serializer/AppBundle"
+nelmio_api_doc:
+    name: 'App API documentation'
+    sandbox:
+        body_format:
+            formats: [ json ]
+        request_format:
+            formats:
+                json: application/json

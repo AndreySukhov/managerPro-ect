@@ -16,9 +16,9 @@ class ProjectFileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('content')
-            ->add('project')
+            ->add('name', null, [
+                'description' => 'Filename',
+            ])
         ;
     }
 
