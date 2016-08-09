@@ -12,4 +12,4 @@ parameters:
     secret:                     ThisTokenIsNotSoSecretChangeIt
     app.super_admin.username:   root
     app.super_admin.email:      root@localhost
-    app.super_admin.password:   admin
+    app.super_admin.password:   'pa$$word'
