@@ -1,0 +1,13 @@
+AppBundle\Entity\ProjectFile:
+    exclusion_policy: ALL
+    properties:
+        id:
+            exclude: true
+        name:
+            exclude: true
+        content:
+            exclude: true
+        createdAt:
+            exclude: true
+        updatedAt:
+            exclude: true

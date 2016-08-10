@@ -17,3 +17,5 @@
 */Entity/*~
 /app/Resources/data/*
 !/app/Resources/data/.gitkeep
+/app/DoctrineMigrations/*
+!/app/DoctrineMigrations/.gitkeep
