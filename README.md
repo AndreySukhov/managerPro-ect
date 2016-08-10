@@ -29,3 +29,21 @@ It's easy
 ```
 $ phpunit
 ```
+
+# Frontend
+
+## OAuth
+
+Create client (all grant types)
+
+```
+$ bin/console app:oauth-server:client:create --redirect-uri="http://localhost:8000" --grant-type="authorization_code" --grant-type="password" --grant-type="refresh-token" --grant-type="token" --grant-type="client_credentials"
+```
+
+output:
+
+```
+<id>_<client_id>, secret <client_secret>
+```
+
+In production use only implicit grant. (authorization_code)

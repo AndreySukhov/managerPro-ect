@@ -2,7 +2,7 @@
 
 ## Functional
 
-- ☐ OAuth
+- ☑ OAuth
 
 ## View
 

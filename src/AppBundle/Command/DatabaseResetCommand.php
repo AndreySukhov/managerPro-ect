@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
-class AppDatabaseResetCommand extends ContainerAwareCommand
+class DatabaseResetCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
