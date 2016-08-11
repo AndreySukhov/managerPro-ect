@@ -24,3 +24,13 @@ monolog:
 
 fos_rest:
     disable_csrf_role: IS_AUTHENTICATED_ANONYMOUSLY
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations/Dev"
+    namespace: Application\Migrations\Dev
+    table_name: migration_versions
+    name: Application Migrations
+
+doctrine:
+    dbal:
+        path:     "%database_path%.dev"

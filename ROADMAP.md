@@ -12,11 +12,11 @@
 
 ## Environment
 
-- ☐ Migrations by environment
-- ☐ Test (dev) database
+- ☑ Migrations by environment
+- ☑ Test (dev) database
 
 ## Tests
 
-- ☐ AppController tests (autentication)
+- ☑ AppController tests (autentication)
 - ☐ ProjectController tests
 - ☐ ProjectFileController tests
