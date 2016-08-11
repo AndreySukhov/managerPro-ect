@@ -14,6 +14,8 @@ class Load_02_ProjectData implements FixtureInterface, ContainerAwareInterface, 
     use \AppBundle\DataFixtures\Traits\OrderedFixtureTrait;
     use \Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
+    static public $members = [];
+
     /**
      * {@inheritdoc}
      */
@@ -30,16 +32,17 @@ class Load_02_ProjectData implements FixtureInterface, ContainerAwareInterface, 
                 'README.md',
                 'ROADMAP.md',
             ] as $filename) {
-                $projectFile = new ProjectFile();
-                $projectFile
+                $file = new ProjectFile();
+                $file
                     ->setName($filename)
                     ->setProject($project)
                     ->setContent('# '.$filename."\n")
                 ;
-
-                $manager->persist($projectFile);
+                $manager->persist($file);
+                $project->addFile($file);
             }
             $manager->persist($project);
+            self::$members[] = $project;
         }
 
         $manager->flush();
