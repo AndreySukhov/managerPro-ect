@@ -19,3 +19,6 @@
 !/app/Resources/data/.gitkeep
 /app/DoctrineMigrations/*
 !/app/DoctrineMigrations/.gitkeep
+
+# Backup entities generated with doctrine:generate:entities command
+*/Entity/*~
