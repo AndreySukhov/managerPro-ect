@@ -59,12 +59,14 @@ class ProjectControllerTest extends WebTestCase
 
     public function testPostAction()
     {
+        $this->markTestSkipped('Пылесос');
+
         $fixtures = [Load_01_UserData::class, Load_02_ProjectData::class];
 
         $this->loadFixtures($fixtures);
         $members = Load_02_ProjectData::$members;
 
-        $this->client->request('POST', $this->getUrl('app_get_projects'), ['ACCEPT' => 'application/json'], [], json_encode([
+        $this->client->request('POST', $this->getUrl('app_get_projects'), ['ACCEPT' => 'application/json'], [], [], json_encode([
             'project' => [
                 'branch' => 'master',
                 'name' => 'Test',
