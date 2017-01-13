@@ -2,14 +2,14 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use AppBundle\Entity\Project;
+use AppBundle\Entity\ProjectFile;
+use AppBundle\Form\Type\ProjectFileType;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Form\Type\ProjectFileType;
-use AppBundle\Entity\ProjectFile;
-use AppBundle\Entity\Project;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class ProjectFileController extends ProjectController
 {
@@ -142,7 +142,7 @@ class ProjectFileController extends ProjectController
 
     /**
      * Delete project file.
-     * 
+     *
      * @Route("/api/v1/projects/{project}/files/{file}", name="app_delete_project_file")
      * @Method("DELETE")
      * @ParamConverter("file", class="AppBundle:ProjectFile", options={"project" = "project_id"})

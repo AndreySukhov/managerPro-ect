@@ -2,10 +2,10 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Project;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use AppBundle\Entity\Project;
 
 class ProjectType extends AbstractType
 {

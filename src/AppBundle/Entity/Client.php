@@ -2,8 +2,8 @@
 
 namespace AppBundle\Entity;
 
-use FOS\OAuthServerBundle\Entity\Client as BaseClient;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\OAuthServerBundle\Entity\Client as BaseClient;
 
 /**
  * @ORM\Entity
@@ -66,6 +66,7 @@ class Client extends BaseClient
      * Set the value of Name.
      *
      * @param string name
+     * @param mixed $name
      *
      * @return self
      */
