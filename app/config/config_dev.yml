@@ -34,3 +34,17 @@ doctrine_migrations:
 doctrine:
     dbal:
         path:     "%database_path%.dev"
+
+nelmio_api_doc:
+    name: 'App API documentation'
+    sandbox:
+        enabled: true
+        body_format:
+            formats: [ json ]
+        request_format:
+            formats:
+                json: application/json
+        authentication:
+            name: access_token
+            delivery: query
+            type:     bearer

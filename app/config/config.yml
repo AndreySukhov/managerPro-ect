@@ -101,11 +101,7 @@ jms_serializer:
 nelmio_api_doc:
     name: 'App API documentation'
     sandbox:
-        body_format:
-            formats: [ json ]
-        request_format:
-            formats:
-                json: application/json
+        enabled: false
 
 nelmio_cors:
     defaults:
