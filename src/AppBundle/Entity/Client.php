@@ -2,16 +2,20 @@
 
 namespace AppBundle\Entity;
 
-use FOS\OAuthServerBundle\Entity\Client as BaseClient;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\OAuthServerBundle\Entity\Client as BaseClient;
 
 /**
+ * Client.
+ *
  * @ORM\Entity
  * @ORM\Table(name="clients")
  */
 class Client extends BaseClient
 {
     /**
+     * Идентификатор.
+     *
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -19,18 +23,13 @@ class Client extends BaseClient
     protected $id;
 
     /**
-     * Name (label in view).
+     * Имя (лэйбл во вью).
      *
      * @var string
      *
      * @ORM\Column(type="string", nullable=true)
      */
     protected $name;
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     public function __toString()
     {
@@ -42,19 +41,23 @@ class Client extends BaseClient
         return (string) $string;
     }
 
+    /**
+     * @return string
+     */
     public function getClientId()
     {
         return $this->getPublicId();
     }
 
+    /**
+     * @return string
+     */
     public function getClientSecret()
     {
         return $this->getSecret();
     }
 
     /**
-     * Get the value of Name.
-     *
      * @return string
      */
     public function getName()
@@ -63,9 +66,8 @@ class Client extends BaseClient
     }
 
     /**
-     * Set the value of Name.
-     *
      * @param string name
+     * @param mixed $name
      *
      * @return self
      */

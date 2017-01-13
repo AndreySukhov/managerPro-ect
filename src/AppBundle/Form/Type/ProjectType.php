@@ -2,10 +2,10 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Project;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use AppBundle\Entity\Project;
 
 class ProjectType extends AbstractType
 {
@@ -17,13 +17,13 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'description' => 'Prokect name',
+                'description' => 'Название проекта',
             ])
             ->add('source', null, [
-                'description' => 'git path',
+                'description' => 'Путь до git директории или путь до удалённого репозитория',
             ])
             ->add('branch', null, [
-                'description' => 'Project branch',
+                'description' => 'Ветка проекта',
             ])
         ;
     }

@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ProjectFile
 {
     /**
-     * Identifier.
+     * Идкнтификатор.
      *
      * @var int
      *
@@ -26,7 +26,7 @@ class ProjectFile
     private $id;
 
     /**
-     * Filename.
+     * Название файла. (Например README.md).
      *
      * @var string
      *
@@ -36,7 +36,7 @@ class ProjectFile
     private $name;
 
     /**
-     * Content (markdown).
+     * Содержимое (markdown).
      *
      * @var string
      *
@@ -45,7 +45,7 @@ class ProjectFile
     private $content;
 
     /**
-     * Parent project.
+     * Проект.
      *
      * @var Project
      *
@@ -56,7 +56,7 @@ class ProjectFile
     private $project;
 
     /**
-     * Created at...
+     * Дата создания.
      *
      * @var \DateTime
      *
@@ -65,7 +65,7 @@ class ProjectFile
     private $createdAt;
 
     /**
-     * Updated at...
+     * Дата обновления.
      *
      * @var \DateTime
      *
@@ -73,9 +73,6 @@ class ProjectFile
      */
     private $updatedAt;
 
-    /**
-     * To string.
-     */
     public function __toString()
     {
         if ($project = $this->getProject()) {
@@ -90,8 +87,6 @@ class ProjectFile
     }
 
     /**
-     * Get id.
-     *
      * @return int
      */
     public function getId()
@@ -100,8 +95,6 @@ class ProjectFile
     }
 
     /**
-     * Set name.
-     *
      * @param string $name
      *
      * @return ProjectFile
@@ -114,8 +107,6 @@ class ProjectFile
     }
 
     /**
-     * Get name.
-     *
      * @return string
      */
     public function getName()
@@ -124,8 +115,6 @@ class ProjectFile
     }
 
     /**
-     * Set content.
-     *
      * @param string $content
      *
      * @return ProjectFile
@@ -138,8 +127,6 @@ class ProjectFile
     }
 
     /**
-     * Get content.
-     *
      * @return string
      */
     public function getContent()
@@ -148,8 +135,6 @@ class ProjectFile
     }
 
     /**
-     * Set createdAt.
-     *
      * @param \DateTime $createdAt
      *
      * @return ProjectFile
@@ -162,8 +147,6 @@ class ProjectFile
     }
 
     /**
-     * Get createdAt.
-     *
      * @return \DateTime
      */
     public function getCreatedAt()
@@ -172,8 +155,6 @@ class ProjectFile
     }
 
     /**
-     * Set updatedAt.
-     *
      * @param \DateTime $updatedAt
      *
      * @return ProjectFile
@@ -186,8 +167,6 @@ class ProjectFile
     }
 
     /**
-     * Get updatedAt.
-     *
      * @return \DateTime
      */
     public function getUpdatedAt()
@@ -196,8 +175,6 @@ class ProjectFile
     }
 
     /**
-     * Set project.
-     *
      * @param Project $project
      *
      * @return ProjectFile
@@ -210,8 +187,6 @@ class ProjectFile
     }
 
     /**
-     * Get project.
-     *
      * @return Project
      */
     public function getProject()

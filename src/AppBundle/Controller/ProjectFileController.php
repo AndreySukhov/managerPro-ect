@@ -2,19 +2,19 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use AppBundle\Entity\Project;
+use AppBundle\Entity\ProjectFile;
+use AppBundle\Form\Type\ProjectFileType;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Form\Type\ProjectFileType;
-use AppBundle\Entity\ProjectFile;
-use AppBundle\Entity\Project;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class ProjectFileController extends ProjectController
 {
     /**
-     * Get project files.
+     * Получение коллекции файлов проекта.
      *
      * @Route("/api/v1/projects/{project}/files", name="app_get_project_files")
      * @Method("GET")
@@ -26,7 +26,7 @@ class ProjectFileController extends ProjectController
      *  }
      * )
      *
-     * @param Project $project The project
+     * @param Project $project Проект
      *
      * @return JsonResponse
      */
@@ -38,7 +38,7 @@ class ProjectFileController extends ProjectController
     }
 
     /**
-     * Get project file.
+     * Получение файла проекта.
      *
      * @Route("/api/v1/projects/{project}/files/{file}", name="app_get_project_file")
      * @Method("GET")
@@ -51,17 +51,17 @@ class ProjectFileController extends ProjectController
      *  }
      * )
      *
-     * @param ProjectFile $file The project file
+     * @param ProjectFile $file Файл проекта
      *
      * @return JsonResponse
      */
-    public function getProjectFileAction(Request $request, ProjectFile $file)
+    public function getProjectFileAction(ProjectFile $file)
     {
         return $this->handleView($this->view($file, 200));
     }
 
     /**
-     * Create project file.
+     * Создание файла проекта.
      *
      * @Route("/api/v1/projects/{project}/files", name="app_post_project_file")
      * @Method("POST")
@@ -74,7 +74,7 @@ class ProjectFileController extends ProjectController
      *  }
      * )
      *
-     * @param Project $project The project
+     * @param Project $project Проект
      *
      * @return JsonResponse
      */
@@ -88,9 +88,9 @@ class ProjectFileController extends ProjectController
         $file->setProject($project);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($file);
-            $em->flush();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($file);
+            $manager->flush();
 
             return $this->handleView($this->view($file, 201));
         }
@@ -99,7 +99,7 @@ class ProjectFileController extends ProjectController
     }
 
     /**
-     * Change project file.
+     * Изменение файла проекта.
      *
      * @Route("/api/v1/projects/{project}/files/{file}", name="app_put_project_file")
      * @Method("PUT")
@@ -113,7 +113,7 @@ class ProjectFileController extends ProjectController
      *  }
      * )
      *
-     * @param ProjectFile $file The project file
+     * @param ProjectFile $file Файл проекта
      *
      * @return JsonResponse
      */
@@ -130,9 +130,9 @@ class ProjectFileController extends ProjectController
 
         return $this->handleView($this->view($file, 200));
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($file);
-            $em->flush();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($file);
+            $manager->flush();
 
             return $this->handleView($this->view($file, 201));
         }
@@ -141,30 +141,30 @@ class ProjectFileController extends ProjectController
     }
 
     /**
-     * Delete project file.
-     * 
+     * Удаление файла проекта.
+     *
      * @Route("/api/v1/projects/{project}/files/{file}", name="app_delete_project_file")
      * @Method("DELETE")
      * @ParamConverter("file", class="AppBundle:ProjectFile", options={"project" = "project_id"})
      * @ApiDoc(
      *  section = "ProjectFiles",
      *  statusCodes = {
-     *      204 = "Returned when successful"
+     *      204 = "В слечае успеха"
      *  },
      *  tags = {
      *      "in-development"
      *  }
      * )
      *
-     * @param ProjectFile $file The project file
+     * @param ProjectFile $file Файл проекта
      *
      * @return JsonResponse
      */
     public function deleteProjectFileAction(ProjectFile $file)
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($file);
-        $em->flush();
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($file);
+        $manager->flush();
 
         return $this->handleView($this->view(null, 204));
     }

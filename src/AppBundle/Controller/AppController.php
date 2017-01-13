@@ -2,13 +2,15 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AppController extends Controller
 {
     /**
+     * Редирект на приложение.
+     *
      * @Route("/", name="main")
      * @Method("GET")
      */
@@ -18,6 +20,8 @@ class AppController extends Controller
     }
 
     /**
+     * Приложение.
+     *
      * @Route("/app", name="app")
      * @Method("GET")
      */

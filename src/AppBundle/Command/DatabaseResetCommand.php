@@ -3,10 +3,10 @@
 namespace AppBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
@@ -61,7 +61,8 @@ class DatabaseResetCommand extends ContainerAwareCommand
         foreach ($commandInputs as $commandInput) {
             $exitCode = $application->run($commandInput, $bufferedOutput);
             if ($exitCode > 0) {
-                $output->writeln('<error>Fail:</error> '.(string) $commandInput);
+                $output->writeln('<error>Ошибка:</error> '.(string) $commandInput);
+
                 return;
             }
 

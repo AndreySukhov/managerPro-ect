@@ -2,19 +2,19 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Project;
+use AppBundle\Entity\ProjectFile;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use AppBundle\Entity\Project;
-use AppBundle\Entity\ProjectFile;
 
 class Load_02_ProjectData implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
     use \AppBundle\DataFixtures\Traits\OrderedFixtureTrait;
     use \Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-    static public $members = [];
+    public static $members = [];
 
     /**
      * {@inheritdoc}

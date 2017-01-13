@@ -41,7 +41,6 @@ doctrine:
         password: "%database_password%"
         charset:  UTF8
         path:     "%database_path%"
-
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
@@ -93,19 +92,17 @@ jms_serializer:
     metadata:
         directories:
             FOSUserBundle:
-                namespace_prefix: "FOS\\UserBundle"
+                namespace_prefix: FOS\UserBundle
                 path: "%kernel.root_dir%/config/serializer/FOSUserBundle"
             AppBundle:
                 namespace_prefix: "AppBundle"
                 path: "%kernel.root_dir%/config/serializer/AppBundle"
+
 nelmio_api_doc:
     name: 'App API documentation'
     sandbox:
-        body_format:
-            formats: [ json ]
-        request_format:
-            formats:
-                json: application/json
+        enabled: false
+
 nelmio_cors:
     defaults:
         allow_credentials: false
@@ -130,6 +127,6 @@ fos_oauth_server:
     refresh_token_class: AppBundle\Entity\RefreshToken
     auth_code_class:     AppBundle\Entity\AuthCode
     service:
-        user_provider: fos_user.user_manager
+        user_provider: fos_user.user_provider.username_email
         options:
             token_type: Bearer
