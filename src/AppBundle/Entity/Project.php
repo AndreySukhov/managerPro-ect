@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Project
 {
     /**
-     * Identifier.
+     * Идентификтор.
      *
      * @var int
      *
@@ -29,7 +29,7 @@ class Project
     private $id;
 
     /**
-     * Unique project name.
+     * Уникальное название проекта.
      *
      * @var string
      *
@@ -39,8 +39,8 @@ class Project
     private $name;
 
     /**
-     * Source.
-     * Path to git directory ot remote repo.
+     * Источник.
+     * Путь до git директории или путь до удалённого репозитория.
      *
      * @var string
      *
@@ -49,7 +49,7 @@ class Project
     private $source;
 
     /**
-     * Branch in project.
+     * Ветка в проекте.
      *
      * @var string
      *
@@ -59,7 +59,7 @@ class Project
     private $branch;
 
     /**
-     * Tracked files.
+     * Отслеживаемые файлы.
      *
      * @var ArrayCollection
      *
@@ -68,7 +68,7 @@ class Project
     private $files;
 
     /**
-     * Created at...
+     * Дата создания.
      *
      * @var \DateTime
      *
@@ -77,7 +77,7 @@ class Project
     private $createdAt;
 
     /**
-     * Updated at...
+     * Дата обновления.
      *
      * @var \DateTime
      *
@@ -86,24 +86,19 @@ class Project
     private $updatedAt;
 
     /**
-     * Constructor.
+     * Конструктор
      */
     public function __construct()
     {
         $this->files = new ArrayCollection();
     }
 
-    /**
-     * To string.
-     */
     public function __toString()
     {
         return (string) $this->getName();
     }
 
     /**
-     * Get id.
-     *
      * @return int
      */
     public function getId()
@@ -112,8 +107,6 @@ class Project
     }
 
     /**
-     * Set name.
-     *
      * @param string $name
      *
      * @return Project
@@ -126,8 +119,6 @@ class Project
     }
 
     /**
-     * Get name.
-     *
      * @return string
      */
     public function getName()
@@ -136,8 +127,6 @@ class Project
     }
 
     /**
-     * Set source.
-     *
      * @param string $source
      *
      * @return Project
@@ -150,8 +139,6 @@ class Project
     }
 
     /**
-     * Get source.
-     *
      * @return string
      */
     public function getSource()
@@ -160,8 +147,6 @@ class Project
     }
 
     /**
-     * Set branch.
-     *
      * @param string $branch
      *
      * @return Project
@@ -174,8 +159,6 @@ class Project
     }
 
     /**
-     * Get branch.
-     *
      * @return string
      */
     public function getBranch()
@@ -184,8 +167,6 @@ class Project
     }
 
     /**
-     * Set createdAt.
-     *
      * @param \DateTime $createdAt
      *
      * @return Project
@@ -198,8 +179,6 @@ class Project
     }
 
     /**
-     * Get createdAt.
-     *
      * @return \DateTime
      */
     public function getCreatedAt()
@@ -208,8 +187,6 @@ class Project
     }
 
     /**
-     * Set updatedAt.
-     *
      * @param \DateTime $updatedAt
      *
      * @return Project
@@ -222,8 +199,6 @@ class Project
     }
 
     /**
-     * Get updatedAt.
-     *
      * @return \DateTime
      */
     public function getUpdatedAt()
@@ -232,8 +207,6 @@ class Project
     }
 
     /**
-     * Add file.
-     *
      * @param ProjectFile $file
      *
      * @return Project
@@ -247,8 +220,6 @@ class Project
     }
 
     /**
-     * Remove file.
-     *
      * @param ProjectFile $file
      *
      * @return Project
@@ -262,8 +233,6 @@ class Project
     }
 
     /**
-     * Get files.
-     *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getFiles()

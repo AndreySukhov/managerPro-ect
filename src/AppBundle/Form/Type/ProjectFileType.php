@@ -17,7 +17,7 @@ class ProjectFileType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'description' => 'Filename',
+                'description' => 'Название файла',
             ])
         ;
     }

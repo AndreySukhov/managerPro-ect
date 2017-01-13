@@ -61,7 +61,7 @@ class DatabaseResetCommand extends ContainerAwareCommand
         foreach ($commandInputs as $commandInput) {
             $exitCode = $application->run($commandInput, $bufferedOutput);
             if ($exitCode > 0) {
-                $output->writeln('<error>Fail:</error> '.(string) $commandInput);
+                $output->writeln('<error>Ошибка:</error> '.(string) $commandInput);
 
                 return;
             }

@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Project;
+
 /**
  * ProjectRepository.
  *
@@ -10,6 +12,9 @@ namespace AppBundle\Repository;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return Project
+     */
     public function createProject()
     {
         $className = $this->getClassName();

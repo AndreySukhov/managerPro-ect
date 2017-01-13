@@ -14,28 +14,28 @@ class CreateClientCommand extends ContainerAwareCommand
     {
         $this
             ->setName('app:oauth-server:client:create')
-            ->setDescription('Creates a new client')
+            ->setDescription('Создаёт нового API клиента')
             ->addOption(
                 'redirect-uri',
                 null,
                 InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
-                'Sets redirect uri for client. Use this option multiple times to set multiple redirect URIs.',
+                'Ссылки перенаправления.',
                 null
             )
             ->addOption(
                 'grant-type',
                 null,
                 InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
-                'Sets allowed grant type for client. Use this option multiple times to set multiple grant types..',
+                'Тип аутентификации',
                 null
             )
             ->setHelp(
                 <<<'EOT'
-                    The <info>%command.name%</info>command creates a new client.
+                    <info>%command.name%</info> команда создаёт клиента.
 
 <info>php %command.full_name% [--redirect-uri=...] [--grant-type=...] name</info>
 
-Example 
+Пример 
 <info>app:oauth-server:client:create --redirect-uri="http://localhost:8000" --grant-type="authorization_code" --grant-type="password" --grant-type="refresh-token" --grant-type="token" --grant-type="client_credentials"</info>
 
 EOT
@@ -51,7 +51,7 @@ EOT
         $clientManager->updateClient($client);
         $output->writeln(
             sprintf(
-                'Added a new client with public id <info>%s</info>, secret <info>%s</info>',
+                'Добавлен клиент: client_id <info>%s</info>, secret <info>%s</info>',
                 $client->getPublicId(),
                 $client->getSecret()
             )

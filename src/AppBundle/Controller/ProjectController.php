@@ -16,14 +16,14 @@ use Symfony\Component\HttpFoundation\Request;
 class ProjectController extends FOSRestController
 {
     /**
-     * Get projects.
+     * Получение коллекции проектов.
      *
      * @Route("/api/v1/projects", name="app_get_projects")
      * @Method("GET")
-     * @REST\QueryParam(map=true, name="filters", requirements=".+", description="Filters. Example: filters[name]=foo")
-     * @REST\QueryParam(map=true, name="order_by", requirements=".+", description="Order by. Example: order_by[name]=acs&order_by[id]=desc")
-     * @REST\QueryParam(name="limit", requirements="\d+", default="12", description="Limit")
-     * @REST\QueryParam(name="offset", requirements="\d+", default="0", description="Offset")
+     * @REST\QueryParam(map=true, name="filters", requirements=".+", description="Фильты. Например: filters[name]=foo")
+     * @REST\QueryParam(map=true, name="order_by", requirements=".+", description="Сортировка. Например: order_by[name]=acs&order_by[id]=desc")
+     * @REST\QueryParam(name="limit", requirements="\d+", default="12", description="Лимит")
+     * @REST\QueryParam(name="offset", requirements="\d+", default="0", description="Смещение")
      * @ApiDoc(
      *  resource=true,
      *  section="Project",
@@ -48,7 +48,7 @@ class ProjectController extends FOSRestController
     }
 
     /**
-     * Get projects.
+     * Получение проекта.
      *
      * @Route("/api/v1/projects/{project}", name="app_get_project")
      * @Method("GET")
@@ -60,7 +60,7 @@ class ProjectController extends FOSRestController
      *  }
      * )
      *
-     * @param Project $project The project
+     * @param Project $project Проект
      *
      * @return JsonResponse
      */
@@ -70,7 +70,7 @@ class ProjectController extends FOSRestController
     }
 
     /**
-     * Create poject.
+     * Создание проекта.
      *
      * @Route("/api/v1/projects", name="app_post_project")
      * @Method("POST")
@@ -78,8 +78,8 @@ class ProjectController extends FOSRestController
      *  section = "Project",
      *  input="AppBundle\Form\Type\ProjectType",
      *  statusCodes = {
-     *      201 = "Returned when successful",
-     *      400 = "Returned when the process error"
+     *      201 = "При успешном создании",
+     *      400 = "При ошибке"
      *  },
      *  responseMap = {
      *      201 = {
@@ -105,9 +105,9 @@ class ProjectController extends FOSRestController
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($project);
-            $em->flush();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($project);
+            $manager->flush();
 
             return $this->handleView($this->view($project, 201));
         }
@@ -116,7 +116,7 @@ class ProjectController extends FOSRestController
     }
 
     /**
-     * Change project.
+     * Изменение проекта.
      *
      * @Route("/api/v1/projects/{project}", name="app_put_project")
      * @Method("PUT")
@@ -125,8 +125,8 @@ class ProjectController extends FOSRestController
      *  input="AppBundle\Form\Type\ProjectType",
      *  output="AppBundle\Entity\Project",
      *  statusCodes = {
-     *      200 = "Returned when successful",
-     *      400 = "Returned when the process error"
+     *      200 = "В случае успеха",
+     *      400 = "В случае ощибки"
      *  },
      *  responseMap = {
      *      200 = {
@@ -143,7 +143,7 @@ class ProjectController extends FOSRestController
      *  }
      * )
      *
-     * @param Project $project The project
+     * @param Project $project Проект
      *
      * @return JsonResponse
      */
@@ -155,9 +155,9 @@ class ProjectController extends FOSRestController
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($project);
-            $em->flush();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($project);
+            $manager->flush();
 
             return $this->handleView($this->view($project, 200));
         }
@@ -166,29 +166,29 @@ class ProjectController extends FOSRestController
     }
 
     /**
-     * Delete project.
+     * Удаление проекта.
      *
      * @Route("/api/v1/projects/{project}", name="app_delete_project")
      * @Method("DELETE")
      * @ApiDoc(
      *  section = "Project",
      *  statusCodes = {
-     *      204 = "Returned when successful"
+     *      204 = "В случае успеха"
      *  },
      *  tags = {
      *      "in-development"
      *  }
      * )
      *
-     * @param Project $project The project
+     * @param Project $project Проект
      *
      * @return JsonResponse
      */
-    public function deleteProjectAction(Request $request, Project $project)
+    public function deleteProjectAction(Project $project)
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($project);
-        $em->flush();
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($project);
+        $manager->flush();
 
         return $this->handleView($this->view(null, 204));
     }
