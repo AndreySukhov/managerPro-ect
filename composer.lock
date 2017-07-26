@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5943ef6cbb4b6f88a315d9dc486256e2",
+    "content-hash": "eb4867d4892873d14b842aa56ff214bd",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -985,7 +985,7 @@
                 "oauth2",
                 "server"
             ],
-            "time": "2016-12-30 09:09:18"
+            "time": "2016-12-30T09:09:18+00:00"
         },
         {
             "name": "friendsofsymfony/oauth2-php",
@@ -1212,7 +1212,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-01-12 10:28:28"
+            "time": "2017-01-12T10:28:28+00:00"
         },
         {
             "name": "incenteev/composer-parameter-handler",
