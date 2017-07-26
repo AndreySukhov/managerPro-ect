@@ -54,8 +54,8 @@ swiftmailer:
     spool:     { type: memory }
 
 doctrine_migrations:
-    dir_name: "%kernel.root_dir%/DoctrineMigrations/Prod"
-    namespace: Application\Migrations\Prod
+    dir_name: "%kernel.root_dir%/migrations"
+    namespace: Application\Migrations
     table_name: migration_versions
     name: Application Migrations
 
