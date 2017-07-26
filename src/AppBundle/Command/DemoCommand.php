@@ -7,15 +7,13 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Finder\Finder;
 
-class DatabaseResetCommand extends ContainerAwareCommand
+class DemoCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this
-            ->setName('app:database:reset')
+            ->setName('app:demo')
         ;
     }
 
@@ -24,51 +22,38 @@ class DatabaseResetCommand extends ContainerAwareCommand
         $application = $this->getApplication();
         $application->setAutoExit(false);
 
-        // Remove all migrations
-        $finder = new Finder();
-        $finder->in($application->getKernel()->getRootDir().'/DoctrineMigrations')->name('*.php');
-
-        $filesistem = new Filesystem();
-        foreach ($finder as $file) {
-            $filesistem->remove($file);
-        }
-
         $commandInputs = [
-            new ArrayInput([
+            'Drop database' => new ArrayInput([
                'command' => 'doctrine:database:drop',
                '--force' => true,
             ]),
-            new ArrayInput([
+            'Create database' => new ArrayInput([
                 'command' => 'doctrine:database:create',
             ]),
-            new ArrayInput([
-                'command' => 'doctrine:migrations:diff',
-            ]),
-            new ArrayInput([
+            'Migrations' => new ArrayInput([
                 'command' => 'doctrine:migrations:migrate',
                 '-n' => true,
             ]),
-            new ArrayInput([
+            'Fixtures' => new ArrayInput([
                 'command' => 'doctrine:fixtures:load',
                 '-n' => true,
             ]),
         ];
 
-        $bufferedOutput = new BufferedOutput(
-            OutputInterface::VERBOSITY_NORMAL,
-            true
-        );
-        foreach ($commandInputs as $commandInput) {
+        $bufferedOutput = new BufferedOutput(OutputInterface::VERBOSITY_NORMAL, true);
+        $step = 1;
+        $steps = count($commandInputs);
+        foreach ($commandInputs as $outputString => $commandInput) {
             $exitCode = $application->run($commandInput, $bufferedOutput);
+            $stepInfo = sprintf('Step %s/%s', $step, $steps);
             if ($exitCode > 0) {
-                $output->writeln('<error>Ошибка:</error> '.(string) $commandInput);
+                $output->writeln('<error>Error '.$stepInfo.':</error> '.$outputString);
 
                 return;
             }
 
-            $output->writeln('<info>OK:</info> '.(string) $commandInput);
+            $output->writeln('<info>OK '.$stepInfo.':</info> '.$outputString);
+            ++$step;
         }
-
-        $application->setAutoExit(true);
     }
 }
