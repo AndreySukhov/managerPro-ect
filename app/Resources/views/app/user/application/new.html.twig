@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <h1 class="page-header">New app</h1>
+  <ol class="breadcrumb">
+    <li>
+      <a href="{{ path('app_user_application_index') }}">App list</a>
+    </li>
+    <li class="active">Show</li>
+  </ol>
+
+  {{ form_start(form) }}
+  {{ form_widget(form) }}
+  <div class="text-right">
+    <div class="btn-group">
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-plus"></span>
+        Create
+      </button>
+    </div>
+  </div>
+  {{ form_end(form) }}
+{% endblock %}

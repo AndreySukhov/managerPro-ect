@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  
+  
+  <h1 class="page-header">
+    Applications
+    <a href="{{ path('app_user_application_new') }}" class="btn btn-default btn-primary pull-right">
+      <span class="glyphicon glyphicon-plus"></span> Create
+    </a>
+  </h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>App name</th>
+        <th class="text-right"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for client in clients %}
+        <tr>
+          <td>
+            <a href="{{ path('app_user_application_show', { 'id': client.id }) }}">{{ client.name }}</a>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <a href="{{ path('app_user_application_show', { 'id': client.id }) }}" class="btn btn-default btn-sm">show</a>
+              <a href="{{ path('app_user_application_edit', { 'id': client.id }) }}" class="btn btn-default btn-sm">edit</a>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <h1 class="page-header">Edit
+    {{ client.name }}</h1>
+  <ol class="breadcrumb">
+    <li>
+      <a href="{{ path('app_user_application_index') }}">App list</a>
+    </li>
+    <li class="active">Edit</li>
+  </ol>
+
+  {{ form_start(edit_form) }}
+  {{ form_widget(edit_form) }}
+  <div class="text-right">
+    <button type="submit" class="btn btn-default btn-primary">
+      <span class="glyphicon glyphicon-edit"></span>
+      Update
+    </button>
+  </div>
+  {{ form_end(edit_form) }}
+
+  <hr>
+  <div class="text-right">
+    {{ form_start(delete_form) }}
+    <button type="submit" class="btn btn-default btn-danger">
+      <span class="glyphicon glyphicon-remove"></span>
+      Delete
+    </button>
+    {{ form_end(delete_form) }}
+  </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+  <h1 class="page-header">{{ client.name }}</h1>
+  <ol class="breadcrumb">
+    <li><a href="{{ path('app_user_application_index') }}">App list</a></li>
+    <li class="active">Show</li>
+  </ol>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Client id</th>
+        <td>{{ client.getPublicId }}</td>
+      </tr>
+      <tr>
+        <th>Client secret</th>
+        <td>{{ client.secret }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  {{ form_start(delete_form) }}
+  <div class="text-right">
+    <div class="btn-group">
+      <a href="{{ path('app_user_application_edit', { 'id': client.id }) }}" class="btn btn-default">
+        <span class="glyphicon glyphicon-edit"></span>
+        Edit
+      </a>
+      <button type="submit" class="btn btn-default">
+        <span class="glyphicon glyphicon-remove"></span>
+        Delete
+      </button>
+    </div>
+  </div>
+  {{ form_end(delete_form) }}
+{% endblock %}
